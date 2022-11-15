@@ -1,0 +1,42 @@
+name: 'Register'
+description: 'Register a new component version in Mach Composer Cloud'
+author: 'Lab Digital'
+branding:
+  color: 'green'
+  icon: 'package'
+
+inputs:
+  component:
+    description: 'The component'
+    required: true
+  organization:
+    description: 'Key of the organization'
+    required: true
+  project:
+    description: 'Key of the project'
+    required: true
+  version:
+    description: 'The version'
+    required: true
+  client_id:
+    description: 'Key of the project'
+    required: true
+  client_secret:
+    description: 'The version'
+    required: true
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    MCC_CLIENT_ID: ${{ inputs.client_id }}
+    MCC_CLIENT_SECRET: ${{ inputs.client_secret }}
+  args:
+    - cloud
+    - register-component-version
+    - --organization
+    - ${{ inputs.organization }}
+    - --project
+    - ${{ inputs.project }}
+    - ${{ inputs.component }}
+    - ${{ inputs.version }}
