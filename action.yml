@@ -15,9 +15,6 @@ inputs:
   project:
     description: 'Key of the project'
     required: true
-  version:
-    description: 'The version'
-    required: true
   client_id:
     description: 'Key of the project'
     required: true
@@ -38,5 +35,5 @@ runs:
     - ${{ inputs.organization }}
     - --project
     - ${{ inputs.project }}
+    - --auto
     - ${{ inputs.component }}
-    - ${{ inputs.version }}
