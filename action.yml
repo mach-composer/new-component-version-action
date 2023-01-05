@@ -23,17 +23,13 @@ inputs:
     required: true
 
 runs:
-  using: 'docker'
-  image: 'docker://ghcr.io/labd/mach-composer:2-cli'
-  env:
-    MCC_CLIENT_ID: ${{ inputs.client_id }}
-    MCC_CLIENT_SECRET: ${{ inputs.client_secret }}
-  args:
-    - cloud
-    - register-component-version
-    - --organization
-    - ${{ inputs.organization }}
-    - --project
-    - ${{ inputs.project }}
-    - --auto
-    - ${{ inputs.component }}
+  using: 'composite'
+  steps:
+    - name: Install MACH composer
+      uses: mach-composer/setup-mach-composer@main
+    - name: Register new version
+      shell: bash
+      env:
+        MCC_CLIENT_ID: ${{ inputs.client_id }}
+        MCC_CLIENT_SECRET: ${{ inputs.client_secret }}
+      run: mach-composer cloud register-component-version --organization ${{ inputs.organization }} --project ${{ inputs.project }} --auto ${{ inputs.component }}
