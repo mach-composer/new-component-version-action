@@ -16,10 +16,10 @@ inputs:
     description: 'Key of the project'
     required: true
   client_id:
-    description: 'Key of the project'
+    description: 'Mach Composer Cloud client id'
     required: true
   client_secret:
-    description: 'The version'
+    description: 'Mach Composer Cloud client secret'
     required: true
 
 runs:
