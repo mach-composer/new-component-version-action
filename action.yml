@@ -15,6 +15,9 @@ inputs:
   project:
     description: 'Key of the project'
     required: true
+  args:
+    required: false
+    description: 'Extra arguments to pass to register-component-version'
   client_id:
     description: 'Key of the project'
     required: true
@@ -27,9 +30,18 @@ runs:
   steps:
     - name: Install MACH composer
       uses: mach-composer/setup-mach-composer@main
+      with:
+        version: 2.9.3
+
     - name: Register new version
       shell: bash
       env:
         MCC_CLIENT_ID: ${{ inputs.client_id }}
         MCC_CLIENT_SECRET: ${{ inputs.client_secret }}
-      run: mach-composer cloud register-component-version --organization ${{ inputs.organization }} --project ${{ inputs.project }} --auto ${{ inputs.component }}
+      run: |
+        mach-composer cloud register-component-version \
+          --organization ${{ inputs.organization }} \
+          --project ${{ inputs.project }} \
+          --auto ${{ inputs.component }} \
+          --dry-run \
+          ${{ inputs.args }}
