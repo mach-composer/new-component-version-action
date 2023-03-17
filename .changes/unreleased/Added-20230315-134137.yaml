@@ -1,0 +1,3 @@
+kind: Added
+body: Add new input `args` to pass additional arguments to the command
+time: 2023-03-15T13:41:37.427409+01:00
