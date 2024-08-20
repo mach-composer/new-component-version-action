@@ -33,6 +33,10 @@ runs:
       with:
         version: 2.9.3
 
+    - name: Configure MACH composer
+      shell: bash
+      run: mach-composer cloud config --set-api-url https://api.beta.mach.cloud --set-auth-url https://auth.beta.mach.cloud
+
     - name: Register new version
       shell: bash
       env:
