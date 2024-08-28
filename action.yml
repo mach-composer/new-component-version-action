@@ -36,7 +36,6 @@ runs:
     - name: Register new version
       shell: bash
       env:
-        MCC_DEBUG: 1
         MCC_CLIENT_ID: ${{ inputs.client_id }}
         MCC_CLIENT_SECRET: ${{ inputs.client_secret }}
       run: |
