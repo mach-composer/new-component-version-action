@@ -24,6 +24,10 @@ inputs:
   client_secret:
     description: 'Mach Composer Cloud client secret'
     required: true
+  mach_composer_version:
+    description: 'Mach Composer Cli version'
+    required: false
+    default: '2.9.3'
 
 runs:
   using: 'composite'
@@ -31,7 +35,7 @@ runs:
     - name: Install MACH composer
       uses: mach-composer/setup-mach-composer@main
       with:
-        version: 2.9.3
+        version: ${{ inputs.mach_composer_version }}
 
     - name: Register new version
       shell: bash
