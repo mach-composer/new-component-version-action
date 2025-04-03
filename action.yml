@@ -44,8 +44,8 @@ runs:
         MCC_CLIENT_ID: ${{ inputs.client_id }}
         MCC_CLIENT_SECRET: ${{ inputs.client_secret }}
       run: |
-        mach-composer cloud register-component-version \
+        mach-composer cloud register-component-version ${{ inputs.component }} \
           --organization ${{ inputs.organization }} \
           --project ${{ inputs.project }} \
-          --auto ${{ inputs.component }} \
+          --auto \
           ${{ inputs.args }}
