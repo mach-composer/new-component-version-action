@@ -33,7 +33,7 @@ runs:
   using: 'composite'
   steps:
     - name: Install MACH composer
-      uses: mach-composer/setup-mach-composer@main
+      uses: mach-composer/setup-mach-composer@3ca0bd4e2c0f08fefc803a36fcbba70e5ee00d67 # main
       with:
         version: ${{ inputs.mach_composer_version }}
 
@@ -43,9 +43,13 @@ runs:
         MCC_DEBUG: 1
         MCC_CLIENT_ID: ${{ inputs.client_id }}
         MCC_CLIENT_SECRET: ${{ inputs.client_secret }}
+        INPUT_ORGANIZATION: ${{ inputs.organization }}
+        INPUT_PROJECT: ${{ inputs.project }}
+        INPUT_COMPONENT: ${{ inputs.component }}
+        INPUT_ARGS: ${{ inputs.args }}
       run: |
         mach-composer cloud register-component-version \
-          --organization ${{ inputs.organization }} \
-          --project ${{ inputs.project }} \
-          --auto ${{ inputs.component }} \
-          ${{ inputs.args }}
+          --organization "$INPUT_ORGANIZATION" \
+          --project "$INPUT_PROJECT" \
+          --auto "$INPUT_COMPONENT" \
+          $INPUT_ARGS
